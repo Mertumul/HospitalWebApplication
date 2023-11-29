@@ -1,0 +1,51 @@
+Doktor (Doctor) İş Kuralları:
+
+Doktorlar, personel tablosunda tanımlanan 'doctor' alanıyla belirlenir.
+Doktorların bilgileri, doktorların kişisel bilgilerini içeren 'Person' tablosuyla ilişkilidir.
+Doktorlar randevu oluşturabilir, ilaç yazabilir ve polikliniklerde çalışabilir.
+
+Personel (Employee) İş Kuralları:
+Personel, doktorlar, sekreterler ve genel personeli içerir.
+Personel, 'doctor', 'secretary' ve 'staff' alanlarına göre sınıflandırılır.
+Personel, bir poliklinikle ilişkilendirilebilir (policlinicId).
+Personel maaşları 'salary' alanında tutulur.
+
+Hasta (Patient) İş Kuralları:
+Hastalar, 'Person' tablosu üzerinden tanımlanır.
+Hastaların ebeveyn bilgileri 'mothersName' ve 'fathersName' alanlarında bulunur.
+
+Sekreter (Secretary) İş Kuralları:
+Sekreterler, 'Secretary' tablosu üzerinden tanımlanır.
+Sekreterler, randevu oluşturma ve duyuru yapma yetkisine sahiptir (belirtilen 'superAdmin' alanıyla).
+
+Person (Person) İş Kuralları:
+Personel ve hastalar, genel kişisel bilgileri içeren 'Person' tablosu üzerinden tanımlanır.
+Giriş yetkisi 'employee' ve 'patient' alanlarıyla belirlenir.
+
+Duyuru (Announcement) İş Kuralları:
+Duyurular, 'Announcement' tablosu üzerinden tanımlanır.
+Duyurular, belirli bir kişiye ('personId') veya tüm personele yapılabilir.
+
+Randevu (Appointment) İş Kuralları:
+Randevular, 'Appointment' tablosu üzerinden tanımlanır.
+Randevular, doktorlara, hastalara ve randevu durumlarına ('appointmentStatus') göre yönetilir.
+
+Departman (Department) İş Kuralları:
+Departmanlar, 'Department' tablosu üzerinden tanımlanır.
+Poliklinikler, belirli bir departmanla ilişkilendirilebilir.
+
+Gider (Expense) ve Gelir (Income) İş Kuralları:
+Giderler ve gelirler, 'Expense' ve 'Income' tabloları üzerinden takip edilir.
+Finansal veriler, belirli bir personele ('personId') bağlı olarak kaydedilir.
+
+Poliklinik (Policlinic) İş Kuralları:
+Poliklinikler, 'Policlinic' tablosu üzerinden tanımlanır.
+Her poliklinik, belirli bir departmanla ilişkilendirilir ('departmentId').
+
+Reçete (Prescription) İş Kuralları:
+Reçeteler, 'Prescription' tablosu üzerinden tanımlanır.
+Reçeteler, bir doktora ('doctorNo') ve bir hastaya ('patientNo') bağlıdır.
+
+
+
+

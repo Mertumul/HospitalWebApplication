@@ -1,0 +1,3 @@
+Yürüttüğüm hastane projesinde, çeşitli poliklinikler bulunan ve bu polikliniklerde görevli personelleri içeren bir yapı oluşturdum. Bu personeller arasında doktorlar, sekreterler ve diğer personeller yer almaktadır. Hastanemize başvuruda bulunmak isteyen hastalar, öncelikle kayıt olmalı ve ardından giriş yaparak istedikleri randevuyu seçmelidir.
+
+Doktorlar, kendilerine gelen randevuları görüntüleyebilir ve özel bir hastaya ilaç yazabilirler. Sekreterleri ise iki gruba ayırdım. Birinci gruptakiler, admin yetkilerine sahip olanlar; yani doktor, sekreter, ve personel ekleyebilme, poliklinik ekleyebilme, finansal işleri yönetme gibi alanlarda yetkilidirler. Diğer sekreterler ise randevu oluşturma ve duyuru yapma gibi işlemleri gerçekleştirebilirler.
