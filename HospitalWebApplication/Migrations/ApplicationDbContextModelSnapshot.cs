@@ -32,6 +32,10 @@ namespace HospitalWebApplication.Migrations
                     b.Property<short>("Age")
                         .HasColumnType("smallint");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<char>("Gender")
                         .HasMaxLength(1)
                         .HasColumnType("character(1)");
@@ -64,6 +68,29 @@ namespace HospitalWebApplication.Migrations
                     b.HasKey("PersonId");
 
                     b.ToTable("Persons");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Person");
+
+                    b.UseTphMappingStrategy();
+                });
+
+            modelBuilder.Entity("HospitalWebApplication.Models.Patient", b =>
+                {
+                    b.HasBaseType("HospitalWebApplication.Models.Person");
+
+                    b.Property<string>("Companion")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FathersName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("MothersName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasDiscriminator().HasValue("Patient");
                 });
 #pragma warning restore 612, 618
         }
