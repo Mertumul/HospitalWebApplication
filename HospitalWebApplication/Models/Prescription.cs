@@ -11,11 +11,9 @@ namespace HospitalWebApplication.Models
         [ForeignKey("Patient")]
         [Required(ErrorMessage = "Patient ID is required.")]
         public int PatientId { get; set; }
-
         [ForeignKey("Doctor")]
         [Required(ErrorMessage = "Doctor ID is required.")]
         public int DoctorId { get; set; }
-
         public string MedicineName { get; set; } = null!;
 
         // Navigation property

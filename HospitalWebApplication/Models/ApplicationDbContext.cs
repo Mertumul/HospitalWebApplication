@@ -11,12 +11,13 @@ namespace HospitalWebApplication.Models
     {
 
         public DbSet<Person> Persons { get; set; }
-
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=Hospital;Username=postgres;Password=postgres");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=Hospital1;Username=postgres;Password=postgres");
         }
 
 

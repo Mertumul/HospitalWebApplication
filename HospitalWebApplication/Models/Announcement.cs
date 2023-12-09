@@ -10,8 +10,8 @@ namespace HospitalWebApplication.Models
         public int AnnouncementId { get; set; }
 
         [ForeignKey("Secretary")]
-        [Required(ErrorMessage = "Person ID is required.")]
-        public int PersonId { get; set; }
+        [Required(ErrorMessage = "Secretary ID is required.")]
+        public int SecretaryId { get; set; }
 
         [Required(ErrorMessage = "Announcement content is required.")]
         public string AnnouncementContent { get; set; } = null!;
