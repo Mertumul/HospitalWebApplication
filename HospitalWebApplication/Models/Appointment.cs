@@ -25,6 +25,7 @@ namespace HospitalWebApplication.Models
         [DataType(DataType.Time)]
         public TimeSpan Time { get; set; }
 
+
         [Required(ErrorMessage = "Complaint is required.")]
         public string Complaint { get; set; } = null!;
 
@@ -33,7 +34,7 @@ namespace HospitalWebApplication.Models
         public bool DrStatus { get; set; }
 
         // Navigation property
-        public Person Patient { get; set; } = null!;
+        public Patient Patient { get; set; } = null!;
         public Doctor Doctor { get; set; } = null!;
     }
 }

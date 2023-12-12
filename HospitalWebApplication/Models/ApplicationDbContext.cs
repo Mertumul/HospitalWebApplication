@@ -10,14 +10,20 @@ namespace HospitalWebApplication.Models
     public class ApplicationDbContext : DbContext
     {
 
-        public DbSet<Person> Persons { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Secretary> Secretaries { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Policlinic> Policlinics { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Prescription> Prescriptions { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=localhost;Database=Hospital1;Username=postgres;Password=postgres");
+            optionsBuilder.UseNpgsql("Host=localhost;Database=Hospital;Username=postgres;Password=postgres");
         }
 
 

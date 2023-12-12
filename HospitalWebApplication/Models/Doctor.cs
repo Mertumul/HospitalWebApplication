@@ -27,9 +27,10 @@ namespace HospitalWebApplication.Models
         [StringLength(50, ErrorMessage = "Surname cannot exceed 50 characters.")]
         public string Surname { get; set; } = null!;
 
+
         [Required(ErrorMessage = "Gender is required.")]
         [StringLength(1, MinimumLength = 1, ErrorMessage = "Gender must be a single character.")]
-        public char Gender { get; set; }
+        public string Gender { get; set; }
 
         [Required(ErrorMessage = "Age is required.")]
         [Range(1, 150, ErrorMessage = "Age must be between 1 and 150.")]

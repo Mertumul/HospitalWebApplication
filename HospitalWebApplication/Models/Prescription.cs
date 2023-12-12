@@ -17,7 +17,7 @@ namespace HospitalWebApplication.Models
         public string MedicineName { get; set; } = null!;
 
         // Navigation property
-        public Person Patient { get; set; } = null!;
+        public Patient Patient { get; set; } = null!;
         public Doctor Doctor { get; set; } = null!;
 
     }

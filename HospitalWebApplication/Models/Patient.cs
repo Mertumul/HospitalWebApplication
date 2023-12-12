@@ -21,10 +21,10 @@ namespace HospitalWebApplication.Models
 
         [Required(ErrorMessage = "Gender is required.")]
         [StringLength(1, MinimumLength = 1, ErrorMessage = "Gender must be a single character.")]
-        public char Gender { get; set; }
+        public string Gender { get; set; } = null!;
 
         [Required(ErrorMessage = "Age is required.")]
-        [Range(1, 150, ErrorMessage = "Age must be between 1 and 150.")]
+        [Range(1, 100, ErrorMessage = "Age must be between 1 and 100.")]
         public short Age { get; set; }
 
         [Required(ErrorMessage = "Password is required.")]
@@ -40,8 +40,8 @@ namespace HospitalWebApplication.Models
         public string FathersName { get; set; } = null!;
 
         // Navigation property
-        public ICollection<Appointment> Appointments { get; set; } = null!;
+        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+        public ICollection<Prescription> Prescriptions { get; set; } = new List<Prescription>();
 
-        public ICollection<Prescription> Prescriptions { get; set; } = null!;
     }
 }
