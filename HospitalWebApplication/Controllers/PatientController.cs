@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HospitalWebApplication.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace HospitalWebApplication.Controllers
 {
@@ -17,6 +19,8 @@ namespace HospitalWebApplication.Controllers
         {
             return View();
         }
+
+        //Registration
         public IActionResult PatientRegistration()
         {
             return View();
@@ -36,7 +40,35 @@ namespace HospitalWebApplication.Controllers
                 ViewBag.msj = "Hasta Eklenemedi!!!!";
                 return View(p);
             }
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
 
+        //Login
+    [HttpPost]
+        public async Task<IActionResult> Login(Patient p)
+        {
+            var informations = k.Patients.FirstOrDefault(x => x.TCIdentificationNo == p.TCIdentificationNo && x.Password == p.Password);
+            if (informations != null)
+            {
+                var claims = new List<Claim>();
+                {
+                    new Claim(ClaimTypes.Name, p.TCIdentificationNo);
+                };
+                var useridentity = new ClaimsIdentity(claims,"Login");
+                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
+                await HttpContext.SignInAsync(principal);
+                return RedirectToAction("Index","Home");
+            }
+            return View();
+        }
+
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
 
         }
     }
