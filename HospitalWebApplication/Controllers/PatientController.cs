@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace HospitalWebApplication.Controllers
 {
-   
+
     public class PatientController : Controller
     {
         private ApplicationDbContext k = new ApplicationDbContext();
@@ -26,7 +26,7 @@ namespace HospitalWebApplication.Controllers
             return View();
 
         }
-    [HttpPost]
+        [HttpPost]
         public IActionResult PatientRegistration(Patient p)
         {
             if (ModelState.IsValid)
@@ -47,7 +47,7 @@ namespace HospitalWebApplication.Controllers
         }
 
         //Login
-    [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Login(Patient p)
         {
             var informations = k.Patients.FirstOrDefault(x => x.TCIdentificationNo == p.TCIdentificationNo && x.Password == p.Password);
@@ -57,10 +57,10 @@ namespace HospitalWebApplication.Controllers
                 {
                     new Claim(ClaimTypes.Name, p.TCIdentificationNo);
                 };
-                var useridentity = new ClaimsIdentity(claims,"Login");
+                var useridentity = new ClaimsIdentity(claims, "Login");
                 ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
                 await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index");
             }
             return View();
         }

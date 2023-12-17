@@ -1,7 +1,16 @@
+using HospitalWebApplication.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDbContextConnection' not found.");
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -9,10 +18,13 @@ builder.Services.AddControllersWithViews();
 //Configuration the authentication cookie
 builder.Services.AddAuthentication(
     CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(option =>{
+    .AddCookie(option => {
         option.LoginPath = "/Patient/Login";
         option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-});
+    });
+
+//Autherization
+
 
 var app = builder.Build();
 
