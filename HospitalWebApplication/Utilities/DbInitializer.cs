@@ -39,10 +39,10 @@ namespace HospitalWebApplication.Utilities
 
                 _userManager.CreateAsync(new ApplicationUser
                 {
-                    UserName = "Mert",
+                    UserName = "Mert",  // Kullanıcı adını burada belirtin
                     Email = "mertumul48@gmail.com"
                 },
-                "Mert123").GetAwaiter().GetResult();
+                "Mert@123").GetAwaiter().GetResult();
 
                 var Appuser = _context.ApplicationUsers.FirstOrDefault(x=>x.Email== "mertumul48@gmail.com");
                 if (Appuser != null)

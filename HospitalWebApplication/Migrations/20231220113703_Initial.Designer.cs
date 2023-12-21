@@ -4,6 +4,7 @@ using HospitalWebApplication.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalWebApplication.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231220113703_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -325,14 +328,11 @@ namespace HospitalWebApplication.Migrations
                     b.Property<DateTime>("DOB")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("DepartmentId")
+                    b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
-
-                    b.Property<bool>("IsDoctor")
-                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -432,7 +432,9 @@ namespace HospitalWebApplication.Migrations
                 {
                     b.HasOne("HospitalWebApplication.Models.Department", "Department")
                         .WithMany("Employees")
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Department");
                 });
