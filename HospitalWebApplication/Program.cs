@@ -1,18 +1,18 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.EntityFrameworkCore;
+using HospitalWebApplication.Data;
+using HospitalWebApplication.Areas.Identity.Data;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("HospitalWebApplicationContextConnection") ?? throw new InvalidOperationException("Connection string 'HospitalWebApplicationContextConnection' not found.");
+
+builder.Services.AddDbContext<HospitalWebApplicationContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<HospitalWebApplicationContext>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
-//Configuration the authentication cookie
-builder.Services.AddAuthentication(
-    CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(option =>{
-        option.LoginPath = "/Patient/Login";
-        option.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-});
 
 var app = builder.Build();
 
@@ -24,18 +24,17 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseAuthentication();
+app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Patient}/{action=Login}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
+app.MapRazorPages();
 app.Run();
