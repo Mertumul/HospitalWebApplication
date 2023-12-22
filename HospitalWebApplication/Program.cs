@@ -8,7 +8,7 @@ var connectionString = builder.Configuration.GetConnectionString("HospitalWebApp
 builder.Services.AddDbContext<HospitalWebApplicationContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddDefaultTokenProviders().AddRoles<ApplicationUser>()
     .AddEntityFrameworkStores<HospitalWebApplicationContext>();
 
 // Add services to the container.
@@ -20,7 +20,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
