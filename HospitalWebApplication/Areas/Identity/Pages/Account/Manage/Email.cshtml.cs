@@ -7,7 +7,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
+=======
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +21,7 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account.Manage
 {
     public class EmailModel : PageModel
     {
+<<<<<<< HEAD
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -25,6 +29,15 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account.Manage
         public EmailModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+=======
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IEmailSender _emailSender;
+
+        public EmailModel(
+            UserManager<IdentityUser> userManager,
+            SignInManager<IdentityUser> signInManager,
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -74,7 +87,11 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account.Manage
             public string NewEmail { get; set; }
         }
 
+<<<<<<< HEAD
         private async Task LoadAsync(ApplicationUser user)
+=======
+        private async Task LoadAsync(IdentityUser user)
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             var email = await _userManager.GetEmailAsync(user);
             Email = email;

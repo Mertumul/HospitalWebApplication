@@ -1,8 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Identity
+<<<<<<< HEAD
 @using HospitalWebApplication.Areas.Identity.Data
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+=======
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 
 <ul class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))

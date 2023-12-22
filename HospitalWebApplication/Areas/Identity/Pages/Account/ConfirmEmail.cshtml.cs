@@ -7,7 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
+=======
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -17,9 +20,15 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
 {
     public class ConfirmEmailModel : PageModel
     {
+<<<<<<< HEAD
         private readonly UserManager<ApplicationUser> _userManager;
 
         public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
+=======
+        private readonly UserManager<IdentityUser> _userManager;
+
+        public ConfirmEmailModel(UserManager<IdentityUser> userManager)
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             _userManager = userManager;
         }

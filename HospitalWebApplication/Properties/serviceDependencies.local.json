@@ -2,7 +2,11 @@
   "dependencies": {
     "mssql1": {
       "type": "mssql.local",
+<<<<<<< HEAD
       "connectionId": "ConnectionStrings:HospitalWebApplicationContextConnection"
+=======
+      "connectionId": "ConnectionStrings:csConnection"
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
     }
   }
 }

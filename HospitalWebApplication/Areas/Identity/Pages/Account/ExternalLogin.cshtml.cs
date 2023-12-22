@@ -11,7 +11,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
+<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
+=======
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -24,17 +27,30 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
+<<<<<<< HEAD
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
+=======
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUserStore<IdentityUser> _userStore;
+        private readonly IUserEmailStore<IdentityUser> _emailStore;
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
+<<<<<<< HEAD
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
+=======
+            SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            IUserStore<IdentityUser> userStore,
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender)
         {
@@ -198,6 +214,7 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             return Page();
         }
 
+<<<<<<< HEAD
         private ApplicationUser CreateUser()
         {
             try
@@ -208,17 +225,37 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             {
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
                     $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+=======
+        private IdentityUser CreateUser()
+        {
+            try
+            {
+                return Activator.CreateInstance<IdentityUser>();
+            }
+            catch
+            {
+                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
+                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
                     $"override the external login page in /Areas/Identity/Pages/Account/ExternalLogin.cshtml");
             }
         }
 
+<<<<<<< HEAD
         private IUserEmailStore<ApplicationUser> GetEmailStore()
+=======
+        private IUserEmailStore<IdentityUser> GetEmailStore()
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
+<<<<<<< HEAD
             return (IUserEmailStore<ApplicationUser>)_userStore;
+=======
+            return (IUserEmailStore<IdentityUser>)_userStore;
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         }
     }
 }

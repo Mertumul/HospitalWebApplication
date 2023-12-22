@@ -5,7 +5,10 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
+=======
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,10 +18,17 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
 {
     public class LogoutModel : PageModel
     {
+<<<<<<< HEAD
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LogoutModel> _logger;
 
         public LogoutModel(SignInManager<ApplicationUser> signInManager, ILogger<LogoutModel> logger)
+=======
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ILogger<LogoutModel> _logger;
+
+        public LogoutModel(SignInManager<IdentityUser> signInManager, ILogger<LogoutModel> logger)
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             _signInManager = signInManager;
             _logger = logger;

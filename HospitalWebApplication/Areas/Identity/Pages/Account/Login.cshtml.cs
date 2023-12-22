@@ -8,7 +8,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
+=======
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -20,10 +23,17 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
+<<<<<<< HEAD
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
         public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+=======
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ILogger<LoginModel> _logger;
+
+        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+>>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             _signInManager = signInManager;
             _logger = logger;
