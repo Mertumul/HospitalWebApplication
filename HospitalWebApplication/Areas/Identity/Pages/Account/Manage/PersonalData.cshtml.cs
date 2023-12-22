@@ -2,10 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 using System;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
-=======
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -15,19 +12,11 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account.Manage
 {
     public class PersonalDataModel : PageModel
     {
-<<<<<<< HEAD
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<PersonalDataModel> _logger;
 
         public PersonalDataModel(
             UserManager<ApplicationUser> userManager,
-=======
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly ILogger<PersonalDataModel> _logger;
-
-        public PersonalDataModel(
-            UserManager<IdentityUser> userManager,
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
             ILogger<PersonalDataModel> logger)
         {
             _userManager = userManager;

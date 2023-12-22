@@ -8,10 +8,7 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
-=======
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -23,17 +20,10 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
     {
-<<<<<<< HEAD
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
 
         public ResendEmailConfirmationModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
-=======
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _emailSender;
-
-        public ResendEmailConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender emailSender)
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             _userManager = userManager;
             _emailSender = emailSender;

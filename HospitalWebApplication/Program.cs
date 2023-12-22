@@ -8,7 +8,7 @@ var connectionString = builder.Configuration.GetConnectionString("HospitalWebApp
 builder.Services.AddDbContext<HospitalWebApplicationContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false).AddDefaultTokenProviders().AddRoles<ApplicationUser>()
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddEntityFrameworkStores<HospitalWebApplicationContext>();
 
 // Add services to the container.

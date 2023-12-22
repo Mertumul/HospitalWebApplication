@@ -9,7 +9,7 @@ namespace HospitalWebApplication.Areas.Identity.Data;
 // Add profile data for application users by adding properties to the HospitalWebApplicationUser class
 public class ApplicationUser : IdentityUser
 {
-    public string FirstName { get; set; }
+    public string FirstName {  get; set; }
     public string LastName { get; set; }
 
 }

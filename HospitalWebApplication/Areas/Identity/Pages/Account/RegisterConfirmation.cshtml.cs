@@ -6,10 +6,7 @@ using System;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
-=======
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -21,17 +18,10 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class RegisterConfirmationModel : PageModel
     {
-<<<<<<< HEAD
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _sender;
 
         public RegisterConfirmationModel(UserManager<ApplicationUser> userManager, IEmailSender sender)
-=======
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IEmailSender _sender;
-
-        public RegisterConfirmationModel(UserManager<IdentityUser> userManager, IEmailSender sender)
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             _userManager = userManager;
             _sender = sender;

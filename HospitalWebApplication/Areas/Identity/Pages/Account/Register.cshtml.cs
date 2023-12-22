@@ -1,20 +1,15 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
+﻿﻿// Licensed to the .NET Foundation under one or more agreements.
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-<<<<<<< HEAD
-=======
-using System.Drawing;
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using HospitalWebApplication.Areas.Identity.Data;
@@ -23,49 +18,23 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages; 
 using Microsoft.AspNetCore.WebUtilities;
-=======
-using HospitalWebApplication.Models;
-using HospitalWebApplication.Utilities;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Routing.Constraints;
-using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.Extensions.Logging;
 
 namespace HospitalWebApplication.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
-<<<<<<< HEAD
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
-=======
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-        private readonly IUserEmailStore<IdentityUser> _emailStore;
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
-<<<<<<< HEAD
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             SignInManager<ApplicationUser> signInManager,
-=======
-            UserManager<IdentityUser> userManager,
-            IUserStore<IdentityUser> userStore,
-            SignInManager<IdentityUser> signInManager,
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -76,7 +45,6 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             _logger = logger;
             _emailSender = emailSender;
         }
-<<<<<<< HEAD
         [BindProperty]
         public InputModel Input { get; set; }
         public string ReturnUrl { get; set; }
@@ -89,17 +57,6 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             [Required]
             [StringLength(255, ErrorMessage = "The last name field should have a maximum of 255 characters ", MinimumLength = 3)]
             public string LastName { get; set; }
-=======
-
-        [BindProperty]
-        public InputModel Input { get; set; }
-        public string ReturnUrl { get; set; }
-
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
-        public class InputModel
-        {
-
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -115,14 +72,6 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
-<<<<<<< HEAD
-=======
-            public string Name { get; set; }
-            public Gender Gender { get; set; }
-            public string Address { get; set; }
-            public DateTime DOB { get; set; }
-
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         }
 
 
@@ -139,36 +88,17 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-<<<<<<< HEAD
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-=======
-
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                user.Name = Input.Name;
-                user.Address = Input.Address;
-                user.DOB = Input.DOB;
-                user.Gender = Input.Gender;
-                user.Email = Input.Email;
-                user.UserName = user.Name + "@gmail.com";
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-<<<<<<< HEAD
 
                     var userId = await _userManager.GetUserIdAsync(user);
-=======
-                    await _userManager.AddToRoleAsync(user, WebSiteRole.WebSite_Patient);
-
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    /*
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     var callbackUrl = Url.Page(
@@ -178,11 +108,7 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-<<<<<<< HEAD
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-=======
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");*/
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -212,32 +138,19 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             }
             catch
             {
-<<<<<<< HEAD
                 throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
                     $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-=======
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
-<<<<<<< HEAD
         private IUserEmailStore<ApplicationUser> GetEmailStore()
-=======
-        private IUserEmailStore<IdentityUser> GetEmailStore()
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             if (!_userManager.SupportsUserEmail)
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
-<<<<<<< HEAD
             return (IUserEmailStore<ApplicationUser>)_userStore;
-=======
-            return (IUserEmailStore<IdentityUser>)_userStore;
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         }
     }
 }

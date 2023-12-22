@@ -7,10 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-<<<<<<< HEAD
 using HospitalWebApplication.Areas.Identity.Data;
-=======
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +17,6 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account.Manage
 {
     public class ExternalLoginsModel : PageModel
     {
-<<<<<<< HEAD
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IUserStore<ApplicationUser> _userStore;
@@ -29,16 +25,6 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account.Manage
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IUserStore<ApplicationUser> userStore)
-=======
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly IUserStore<IdentityUser> _userStore;
-
-        public ExternalLoginsModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
-            IUserStore<IdentityUser> userStore)
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -84,11 +70,7 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account.Manage
                 .ToList();
 
             string passwordHash = null;
-<<<<<<< HEAD
             if (_userStore is IUserPasswordStore<ApplicationUser> userPasswordStore)
-=======
-            if (_userStore is IUserPasswordStore<IdentityUser> userPasswordStore)
->>>>>>> bdf6d78f6bf294935e3fb17a16a9586839e46601
             {
                 passwordHash = await userPasswordStore.GetPasswordHashAsync(user, HttpContext.RequestAborted);
             }
