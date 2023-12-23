@@ -8,8 +8,10 @@ var connectionString = builder.Configuration.GetConnectionString("HospitalWebApp
 builder.Services.AddDbContext<HospitalWebApplicationContext>(options =>
     options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<HospitalWebApplicationContext>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<HospitalWebApplicationContext>()
+    .AddDefaultUI()
+    .AddDefaultTokenProviders();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -36,4 +38,8 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapRazorPages();
+using (var scope = app.Services.CreateScope())
+{
+    await DbSeeder.SeedRolesAndAdminAsync(scope.ServiceProvider);
+}
 app.Run();

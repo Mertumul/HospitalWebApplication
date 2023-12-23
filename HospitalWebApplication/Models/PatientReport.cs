@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using HospitalWebApplication.Areas.Identity.Data;
 
 namespace HospitalWebApplication.Models
 {

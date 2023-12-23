@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages; 
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using HospitalWebApplication.Constants;
 
 namespace HospitalWebApplication.Areas.Identity.Pages.Account
 {
@@ -63,7 +64,7 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
@@ -96,6 +97,8 @@ namespace HospitalWebApplication.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, Roles.Patient.ToString());
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

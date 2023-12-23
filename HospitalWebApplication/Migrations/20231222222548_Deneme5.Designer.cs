@@ -4,6 +4,7 @@ using HospitalWebApplication.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HospitalWebApplication.Migrations
 {
     [DbContext(typeof(HospitalWebApplicationContext))]
-    partial class HospitalWebApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20231222222548_Deneme5")]
+    partial class Deneme5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
