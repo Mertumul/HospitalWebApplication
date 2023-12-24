@@ -11,6 +11,6 @@ namespace HospitalWebApplication.Models
         public string DepartmentName { get; set; } = null!;
 
         // Navigation property
-        public ICollection<ApplicationUser> Employees { get; set; }
+        public List<ApplicationUser> Employees { get; set; }
     }
 }

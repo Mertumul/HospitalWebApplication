@@ -14,8 +14,6 @@ namespace HospitalWebApplication.Models
 
         public DateTime Date { get; set; }
 
-        public string Complaint { get; set; } = null!;
-
         public ApplicationUser Patient { get; set; }
 
         public ApplicationUser Doctor { get; set; }
