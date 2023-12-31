@@ -1,0 +1,42 @@
+﻿@model HospitalWebApplication.Models.DoctorAppointmentsViewModel
+
+<h2>Doctor Appointments</h2>
+
+@if (Model.Doctors != null && Model.Doctors.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Doctor Name</th>
+                <th>Appointments</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var doctor in Model.Doctors)
+            {
+                <tr>
+                    <td>@doctor.FirstName @doctor.LastName</td>
+                    <td>
+                        @if (doctor.Appointments != null && doctor.Appointments.Any())
+                        {
+                            <ul>
+                                @foreach (var appointment in doctor.Appointments)
+                                {
+                                    <li>@appointment.Date.ToString("yyyy-MM-dd HH:mm")</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <p>No appointments for this doctor on the selected date.</p>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No matching doctors found for the selected date and department.</p>
+}

@@ -19,8 +19,10 @@ namespace HospitalWebApplication.Data
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
             builder.ApplyConfiguration(new DepartmentEntityConfiguration());
+            builder.ApplyConfiguration(new AppointmentEntityConfiguration());
         }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<HospitalWebApplication.Models.Appointment>? Appointment { get; set; }
 
     }
 
@@ -42,7 +44,7 @@ namespace HospitalWebApplication.Data
 
         }
     }
-    }
+}
 
 public class DepartmentEntityConfiguration : IEntityTypeConfiguration<Department>
 {
@@ -56,5 +58,27 @@ public class DepartmentEntityConfiguration : IEntityTypeConfiguration<Department
             .WithOne(u => u.Department)
             .HasForeignKey(u => u.AppUserDepartmentId) // Specify the foreign key property
             .OnDelete(DeleteBehavior.Cascade);
+    }
+}
+
+public class AppointmentEntityConfiguration : IEntityTypeConfiguration<Appointment>
+{
+    public void Configure(EntityTypeBuilder<Appointment> builder)
+    {
+        // Configure properties
+        builder.Property(a => a.Date).IsRequired();
+        builder.Property(a => a.Status).IsRequired();
+
+        // Configure Patient relationship
+        builder.HasOne(a => a.Patient)
+            .WithMany()
+            .HasForeignKey(a => a.PatientId)
+            .OnDelete(DeleteBehavior.Restrict); // Adjust the delete behavior as needed
+
+        // Configure Doctor relationship
+        builder.HasOne(a => a.Doctor)
+            .WithMany()
+            .HasForeignKey(a => a.DoctorId)
+            .OnDelete(DeleteBehavior.Restrict); // Adjust the delete behavior as needed
     }
 }

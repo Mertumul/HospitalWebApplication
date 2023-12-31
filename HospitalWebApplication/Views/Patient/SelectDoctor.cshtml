@@ -1,0 +1,25 @@
+﻿@model HospitalWebApplication.Models.DoctorAppointmentsViewModel
+
+<h2>Select Doctor</h2>
+
+<form asp-controller="Patient" asp-action="SelectedDoctorAppointments" method="post">
+    <div class="form-group">
+        <label for="SelectedDoctorId">Select Doctor:</label>
+        <select id="SelectedDoctorId" name="SelectedDoctorId" asp-items="@Model.Doctors.Select(doctor => new SelectListItem
+        {
+            Text = $"{doctor.FirstName} {doctor.LastName}",
+            Value = doctor.Id
+        })" class="form-control" aria-required="true">
+            <option value="">Select a Doctor</option>
+        </select>
+    </div>
+
+    <input type="hidden" name="SelectedDate" value="@Model.SelectedDate" />
+    <input type="hidden" name="SelectedDepartmentId" value="@Model.SelectedDepartment" />
+
+    <button type="submit" class="btn btn-primary">Continue</button>
+</form>
+
+<p>
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</p>

@@ -56,12 +56,10 @@
                 <select asp-for="Input.SelectedDepartmentName" asp-items="@Model.DepartmentList" class="form-control" aria-required="true">
                     <option value="-1">
                         Select Department
-                    </option>
+                    </option>   
                 </select>
                 <span asp-validation-for="Input.SelectedDepartmentName" class="text-danger"></span>
             </div>
-
-
             <div class="form-floating">
                 <input asp-for="Input.Specialist" class="form-control" autocomplete="specialist" aria-required="true" />
                 <label asp-for="Input.Specialist"></label>

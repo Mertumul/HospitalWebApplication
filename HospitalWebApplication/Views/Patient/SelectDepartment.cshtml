@@ -1,0 +1,14 @@
+﻿@model HospitalWebApplication.Models.DoctorAppointmentsViewModel
+
+<h2>Select Department</h2>
+
+<form asp-controller="Patient" asp-action="SelectDepartment" method="post">
+    <div class="form-group">
+        <label for="SelectedDepartmentId">Select Department:</label>
+        <select id="SelectedDepartmentId" name="SelectedDepartmentId" asp-items="@ViewBag.Departments" class="form-control" aria-required="true">
+            <option value="">All Departments</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Continue</button>
+</form>

@@ -23,6 +23,9 @@ public class ApplicationUser : IdentityUser
     [ForeignKey("Department")]
     public int? AppUserDepartmentId { get; set; } // Make DepartmentId nullable
     public Department? Department { get; set; }
+
+    [NotMapped]
+    public List <Appointment> Appointments { get; set; }
 }
 public enum Gender
 {

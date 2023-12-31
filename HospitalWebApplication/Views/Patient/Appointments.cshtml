@@ -1,0 +1,25 @@
+﻿@model List<HospitalWebApplication.Models.Appointment>
+
+<h2>Randevular</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Tarih</th>
+            <th>Doktor</th>
+            <th>Durum</th>
+            <!-- Diğer sütunlar... -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var appointment in Model)
+        {
+            <tr>
+                <td>@appointment.Date</td>
+                <td>@appointment.Doctor.UserName</td>
+                <td>@appointment.Status</td>
+                <!-- Diğer sütunlar... -->
+            </tr>
+        }
+    </tbody>
+</table>

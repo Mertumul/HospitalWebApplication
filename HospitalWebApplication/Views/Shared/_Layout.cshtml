@@ -30,7 +30,9 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/DoctorRegister">AddDoctor</a>
                             </li>
-
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="addAppointment">AddAppointment</a>
+                            </li>
                         }
 
                         @if (User.IsInRole("Doctor"))
@@ -43,6 +45,9 @@
                         {
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Patient Panel</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="SelectDate">Get Appointment</a>
                             </li>
                         }
                     </ul>
