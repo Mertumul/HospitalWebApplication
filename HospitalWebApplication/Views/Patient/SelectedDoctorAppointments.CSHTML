@@ -2,6 +2,11 @@
 
 <h2>Appointments for @Model.SelectedDoctorName</h2>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+}
+
 @if (Model.SelectedDoctorAppointments.Any())
 {
     <table class="table">
@@ -10,6 +15,7 @@
                 <th>Patient Name</th>
                 <th>Date</th>
                 <th>Status</th>
+                <th>Actions</th>
                 <!-- Diğer randevu özelliklerini ekleyebilirsiniz -->
             </tr>
         </thead>
@@ -19,7 +25,16 @@
                 <tr>
                     <td>@appointment.Patient?.FirstName</td>
                     <td>@appointment.Date</td>
-                    <td>@(appointment.Status ? "Confirmed" : "Not Confirmed")</td>
+                    <td>@(appointment.Status ? "Busy" : "Free")</td>
+                    <td>
+                        @if (!appointment.Status)
+                        {
+                            <form asp-controller="Patient" asp-action="TakeAppointment" method="post">
+                                <input type="hidden" name="AppointmentId" value="@appointment.Id" />
+                                <button type="submit" class="btn btn-primary">Take Appointment</button>
+                            </form>
+                        }
+                    </td>
                     <!-- Diğer randevu özelliklerini ekleyebilirsiniz -->
                 </tr>
             }

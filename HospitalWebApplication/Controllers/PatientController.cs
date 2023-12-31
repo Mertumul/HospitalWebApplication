@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Linq;
 using HospitalWebApplication.Models;
 using HospitalWebApplication.Areas.Identity.Data;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
 
 namespace HospitalWebApplication.Controllers
 {
@@ -91,6 +93,52 @@ namespace HospitalWebApplication.Controllers
 
             return View(model);
         }
+        [HttpPost]
+        public IActionResult TakeAppointment(int appointmentId)
+        {
+            // Şuanki giriş yapmış kullanıcının ID'sini al
+            var currentUserId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            // İlgili randevuyu veritabanında bulun
+            var appointment = _context.Appointment.FirstOrDefault(a => a.Id == appointmentId);
+
+            if (appointment != null && !appointment.Status)
+            {
+                // Kullanıcının ID'sini randevuya ekle
+                appointment.PatientId = currentUserId;
+
+                // Randevunun durumunu "Busy" olarak güncelle
+                appointment.Status = true;
+
+                // Veritabanını güncelle
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Appointment successfully taken!";
+            }
+
+            return RedirectToAction("SelectedDoctorAppointments", new { selectedDoctorId = appointment.DoctorId });
+        }
+
+        public IActionResult ListAppointments()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var userAppointments = _context.Appointment
+                .Where(appointment => appointment.PatientId == userId)
+                .Include(appointment => appointment.Doctor) // Doktor bilgisini ekleyin
+                .ToList();
+
+            var model = new DoctorAppointmentsViewModel
+            {
+                SelectedDoctorAppointments = userAppointments
+            };
+
+            return View(model);
+        }
+
+
+
+
     }
 
 

@@ -38,13 +38,15 @@
                         @if (User.IsInRole("Doctor"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="Index">Doctor Panel</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="ListAppointments">See Appointments
+
+                                </a>
                             </li>
                         }
                         @if (User.IsInRole("Patient"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Patient Panel</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="ListAppointments">See Appointments</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="SelectDate">Get Appointment</a>

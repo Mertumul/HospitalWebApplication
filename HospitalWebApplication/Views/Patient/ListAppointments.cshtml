@@ -1,0 +1,36 @@
+﻿@model HospitalWebApplication.Models.DoctorAppointmentsViewModel
+
+<h2>Your Appointments</h2>
+
+@if (Model.SelectedDoctorAppointments.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Doctor Name</th>
+                <th>Date</th>
+                <th>Status</th>
+                <!-- Diğer randevu özelliklerini ekleyebilirsiniz -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appointment in Model.SelectedDoctorAppointments)
+            {
+                <tr>
+                    <td>@(appointment.Doctor?.FirstName + " " + appointment.Doctor?.LastName)</td>
+                    <td>@appointment.Date</td>
+                    <td>@(appointment.Status ? "Busy" : "Free")</td>
+                    <!-- Diğer randevu özelliklerini ekleyebilirsiniz -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>You have no appointments.</p>
+}
+
+<p>
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</p>
