@@ -8,6 +8,10 @@
 
   <ItemGroup>
     <Content Remove="Views\Patient\SelectedDepartmentView.cshtml" />
+    <Content Remove="wwwroot\css\responsiveslides.css" />
+    <Content Remove="wwwroot\css\style.css" />
+    <Content Remove="wwwroot\js\jquery.min.js" />
+    <Content Remove="wwwroot\js\responsiveslides.min.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +29,34 @@
 
   <ItemGroup>
     <None Include="Views\Patient\SelectedDepartmentView.cshtml" />
+    <None Include="wwwroot\css\responsiveslides.css" />
+    <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\images\facebook.png" />
+    <None Include="wwwroot\images\best.png" />
+    <None Include="wwwroot\images\d1.jpg" />
+    <None Include="wwwroot\images\d2.jpg" />
+    <None Include="wwwroot\images\d3.jpg" />
+    <None Include="wwwroot\images\d4.jpg" />
+    <None Include="wwwroot\images\feed.png" />
+    <None Include="wwwroot\images\inject.png" />
+    <None Include="wwwroot\images\lock.png" />
+    <None Include="wwwroot\images\lock1.png" />
+    <None Include="wwwroot\images\login.png" />
+    <None Include="wwwroot\images\login1.png" />
+    <None Include="wwwroot\images\marker.png" />
+    <None Include="wwwroot\images\marker02.png" />
+    <None Include="wwwroot\images\marker020.png" />
+    <None Include="wwwroot\images\marker1.png" />
+    <None Include="wwwroot\images\phone.png" />
+    <None Include="wwwroot\images\slider2.jpg" />
+    <None Include="wwwroot\images\slider2.png" />
+    <None Include="wwwroot\images\slider3.png" />
+    <None Include="wwwroot\images\timer.png" />
+    <None Include="wwwroot\images\tool.png" />
+    <None Include="wwwroot\images\twitter.png" />
+    <None Include="wwwroot\js\jquery.min.js" />
+    <None Include="wwwroot\js\responsiveslides.min.js" />
+    <None Include="wwwroot\images\logo.png" />
   </ItemGroup>
 
 </Project>
