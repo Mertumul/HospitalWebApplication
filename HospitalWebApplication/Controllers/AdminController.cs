@@ -4,6 +4,7 @@ using HospitalWebApplication.Models;
 using HospitalWebApplication.Areas.Identity.Data;
 using HospitalWebApplication.Data;
 using HospitalWebApplication.Services;
+using System.Text.Json;
 
 namespace HospitalWebApplication.Controllers
 {
@@ -12,10 +13,13 @@ namespace HospitalWebApplication.Controllers
     {
         private readonly HospitalWebApplicationContext _context;
         private readonly IUserAccessor _userAccessor;
+        private readonly IHttpClientFactory _clientFactory;
 
-        public AdminController(HospitalWebApplicationContext context, IUserAccessor userAccessor)
+
+        public AdminController(HospitalWebApplicationContext context, IUserAccessor userAccessor, IHttpClientFactory clientFactory)
         {
             _context = context;
+            _clientFactory = clientFactory;
             _userAccessor = userAccessor;
         }
 
@@ -104,10 +108,25 @@ namespace HospitalWebApplication.Controllers
 
             return appointments;
         }
+        public async Task<IActionResult> SeeAllPatient()
+        {
+            var apiUrl = "https://localhost:7191/api/PatientApi";
+            var client = _clientFactory.CreateClient();
+            var response = await client.GetAsync(apiUrl);
 
-
-
+            if (response.IsSuccessStatusCode)
+            {
+                var contentStream = await response.Content.ReadAsStreamAsync();
+                var patients = await JsonSerializer.DeserializeAsync<List<ApplicationUser>>(contentStream);
+                return View(patients);
+            }
+            else
+            {
+                return View("Error");
+            }
+        }
     }
-
 }
+
+
 

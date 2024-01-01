@@ -1,9 +1,9 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using HospitalWebApplication.Data;
 using HospitalWebApplication.Areas.Identity.Data;
+using HospitalWebApplication.Data;
 using HospitalWebApplication.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("HospitalWebApplicationContextConnection") ?? throw new InvalidOperationException("Connection string 'HospitalWebApplicationContextConnection' not found.");
@@ -22,15 +22,17 @@ builder.Services.AddScoped<IUserAccessor, UserAccessor>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Add HttpClientFactory
+builder.Services.AddHttpClient();
+
 //Dil Desteði----------------------------------------------------------------------------------------------------
-builder.Services.AddLocalization(opt=>
+builder.Services.AddLocalization(opt =>
 {
     opt.ResourcesPath = "Resources";
 
 });
 builder.Services.AddMvc().AddMvcLocalization(LanguageViewLocationExpanderFormat.Suffix).AddDataAnnotationsLocalization();
 //Dil Desteði Bitiþ----------------------------------------------------------------------------------------------------
-
 
 var app = builder.Build();
 
@@ -45,7 +47,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
+app.UseAuthentication(); ;
 
 app.UseAuthorization();
 //Dil Desteði----------------------------------------------------------------------------------------------------
