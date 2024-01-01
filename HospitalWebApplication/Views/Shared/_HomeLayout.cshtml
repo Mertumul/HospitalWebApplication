@@ -1,4 +1,5 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
     Layout = null;  
 }
 <!DOCTYPE HTML>
@@ -22,8 +23,6 @@
 		  </script>
 	</head>
 	<body>
-		<!---start-wrap---->
-		
 			<!---start-header---->
 			<div class="header">
 					<div class="top-header">
@@ -33,9 +32,25 @@
 						</div>
 						<div class="right-left">
 							<ul>
-						<li class="login"><a href="~/Identity/Account/Login">Login</a></li>
-						<li class="sign"><a href="~/Identity/Account/Register">Sign up</a></li>
+						<li class="login"><a href="~/Identity/Account/Login">@localizer["Login"]</a></li>
+						<li class="sign"><a href="~/Identity/Account/Register">@localizer["Sign Up"]</a></li>
 							</ul>
+					<!--navbar for language-->
+					<ul nav navbar-nav float-right>
+						<li class="dropdown dropdown-language nav-item">
+							<a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<i class="flag-icon flag-icon-us"></i>
+								<span class="selected-language"></span>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="dropdown-flag">
+								<div class="arrow_box">
+									<a class="dropdown-item" href="/?culture=en"><i class="flag-icon flag-icon-en"></i>English</a>
+									<a class="dropdown-item" href="/?culture=tr"><i class="flag-icon flag-icon-tr"></i>Turkish</a>
+								</div>
+							</div>
+						</li>
+					</ul>                                    
+					<!--navbar for language-->
 						</div>
 						<div class="clear"> </div>
 					</div>
@@ -60,11 +75,11 @@
 					<div class="top-nav">
 						<div class="wrap">
 							<ul>
-								<li class="active"><a href="~/../Home/Index">Home</a></li>
-								<li><a href="~/../Home/About">About</a></li>
-								<li><a href="~/../Home/Services">Services</a></li>
-								<li><a href="~/../Home/News">News</a></li>
-								<li><a href="~/../Home/Contact">Contact</a></li>
+								<li class="active"><a href="~/../Home/Index">@localizer["Home"]</a></li>
+								<li><a href="~/../Home/About">@localizer["About"]</a></li>
+								<li><a href="~/../Home/Services">@localizer["Services"]</a></li>
+								<li><a href="~/../Home/News">@localizer["News"]</a></li>
+								<li><a href="~/../Home/Contact">@localizer["Contact"]</a></li>
 								<div class="clear"> </div>
 							</ul>
 						</div>
@@ -78,30 +93,29 @@
 					      <li id="rslides1_s0" class="" style="display: block; float: none; position: absolute; opacity: 0; z-index: 1; -webkit-transition: opacity 600ms ease-in-out; transition: opacity 600ms ease-in-out;">
 					      	<img src="images/slider3.png" alt="">
 					      	<div class="slider-info">
-					      		<p>Medica the best Hospital website</p>
+							<p>@localizer["Medica the best Hospital website"]</p>
 					      		<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-					      		<a href="#">ReadMore</a>
+					      		<a href="#">@localizer["ReadMore"]</a>
 					      	</div>
 					      </li>
 					      <li id="rslides1_s1" class="" style="float: none; position: absolute; opacity: 0; z-index: 1; display: list-item; -webkit-transition: opacity 600ms ease-in-out; transition: opacity 600ms ease-in-out;"><img src="images/slider2.png" alt="">
 					      	<div class="slider-info">
-					      		<p>Medica the best Hospital website</p>
+							<p>@localizer["Medica the best Hospital website"]</p>
 					      		<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-					      		<a href="#">ReadMore</a>
+								<a href="#">@localizer["ReadMore"]</a>
 					      	</div>
 					      </li>
 					      <li id="rslides1_s2" class="rslides1_on" style="float: left; position: relative; opacity: 1; z-index: 2; display: list-item; -webkit-transition: opacity 600ms ease-in-out; transition: opacity 600ms ease-in-out;"><img src="images/slider2.png" alt="">
 					      	<div class="slider-info">
-					      		<p>Medica the best Hospital website</p>
-					      		<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
-					      		<a href="#">ReadMore</a>
+							<p>@localizer["Medica the best Hospital website"]</p>
+								<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </span>
+								<a href="#">@localizer["ReadMore"]</a>
 					      	</div>
 					      </li>
 					    </ul>
 						 <!-- Slideshow 2 -->
 					</div>
 			<!---End-images-slider---->
-	<partial name="_LoginPartial" />
 	@RenderBody()
 		<!---End-wrap---->
 		<!---start-footer---->
@@ -109,7 +123,8 @@
 			<div class="wrap">
 				<div class="footer-grids">
 					<div class="footer-grid">
-						<h3>OUR Profile</h3>
+					<h3>
+						@localizer["OUR Profile"]</h3>
 						 <ul>
 							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
 							<li><a href="#">Conse ctetur adipisicing</a></li>
@@ -120,7 +135,7 @@
 						</ul>
 					</div>
 					<div class="footer-grid">
-						<h3>Our Services</h3>
+						<h3>@localizer["Our Services"]</h3>
 						 <ul>
 							<li><a href="#">Et dolore magna aliqua</a></li>
 							<li><a href="#">Ut enim ad minim veniam</a></li>
@@ -130,7 +145,7 @@
 						</ul>
 					</div>
 					<div class="footer-grid">
-						<h3>OUR FLEET</h3>
+						<h3>@localizer["OUR FLEET"]</h3>
 						 <ul>
 							<li><a href="#">Lorem ipsum dolor sit amet</a></li>
 							<li><a href="#">Conse ctetur adipisicing</a></li>
@@ -141,7 +156,7 @@
 						</ul>
 					</div>
 					<div class="footer-grid">
-						<h3>CONTACTS</h3>
+						<h3>@localizer["CONTACTS"]</h3>
 						 <p>Lorem ipsum dolor sit amet ,</p>
 						 <p>Conse ctetur adip .</p>
 						 <p>ut labore Usa.</p>
